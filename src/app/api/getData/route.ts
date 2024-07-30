@@ -18,3 +18,6 @@ export async function GET(request: Request) {
     return Response.json({ message: "error" }, { status: 500 });
   }
 }
+
+
+export const dynamic = 'force-dynamic'
