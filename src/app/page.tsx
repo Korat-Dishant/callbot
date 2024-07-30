@@ -49,9 +49,10 @@ export default function Home() {
         <table className="w-fit mx-auto">
           <tbody>
             <tr>
-              <th className="p-3 border-2 border-gray-900 w-80 min-w-96">
-                Customer Id
-              </th>
+              <th className="p-3 border-2 border-gray-900  ">Customer Id</th>
+              <th className="p-3 border-2 border-gray-900  ">Full name</th>
+              <th className="p-3 border-2 border-gray-900  ">email</th>
+              <th className="p-3 border-2 border-gray-900  ">date</th>
               <th className="p-3 border-2 border-gray-900 w-40 text-center">
                 Attention
               </th>
@@ -60,8 +61,17 @@ export default function Home() {
               data.data.map((item: any, index: number) => {
                 return (
                   <tr key={index}>
-                    <td className="p-3 border-2 border-gray-900 w-80">
+                    <td className="p-3 border-2 border-gray-900 w-20">
                       {item.userid}
+                    </td>
+                    <td className="p-3 border-2 border-gray-900 w-40">
+                      {item.user_name}
+                    </td>
+                    <td className="p-3 border-2 border-gray-900 w-32">
+                      {item.user_email}
+                    </td>
+                    <td className="p-3 border-2 border-gray-900 w-12">
+                      {item.date}
                     </td>
                     <td
                       className={twMerge(
@@ -77,9 +87,10 @@ export default function Home() {
               })
             ) : (
               <tr>
-                <td className="p-3 border-2 border-gray-900 w-80 min-w-96">
-                  ...
-                </td>
+                <td className="p-3 border-2 border-gray-900 w-20">...</td>
+                <td className="p-3 border-2 border-gray-900 w-40">...</td>
+                <td className="p-3 border-2 border-gray-900 w-32">...</td>
+                <td className="p-3 border-2 border-gray-900 w-12">...</td>
                 <td className={"p-3 border-2 border-gray-900 w-40 text-center"}>
                   ...
                 </td>
@@ -92,7 +103,7 @@ export default function Home() {
       <div className="flex justify-center">
         <button
           className="border-green-600 border-2 p-2 px-4 rounded-xl bg-green-800/10 font-semibold"
-          onClick={testPost}
+          onClick={getData}
         >
           Get Data
         </button>
