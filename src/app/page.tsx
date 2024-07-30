@@ -44,7 +44,7 @@ export default function Home() {
   };
 
   return (
-    <div className="h-screen bg-white ">
+    <div className="min-h-screen bg-white ">
       <div className="py-12 overflow-x-scroll">
         <table className="w-fit mx-auto">
           <tbody>
