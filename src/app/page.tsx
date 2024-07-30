@@ -29,6 +29,20 @@ export default function Home() {
     setData(res);
   };
 
+  const testPost = async () => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/contact`, {
+      method: "post",
+      headers: {
+        userID: "EE222",
+        condition: "urgent",
+        userName: "test test",
+        userEmail: "test@test.com",
+        lastDate: "12/7",
+      },
+    }).then((res) => res.json());
+    console.log("data ===> ", res);
+  };
+
   return (
     <div className="h-screen bg-white ">
       <div className="py-12 overflow-x-scroll">
@@ -43,16 +57,18 @@ export default function Home() {
               </th>
             </tr>
             {data && data?.data?.length > 0 ? (
-              data.data.map((item:any,index:number) => {
+              data.data.map((item: any, index: number) => {
                 return (
                   <tr key={index}>
                     <td className="p-3 border-2 border-gray-900 w-80">
                       {item.userid}
                     </td>
                     <td
-                      className={
-                        twMerge("p-3 border-2 border-gray-900 w-40 text-center",item?.cause === "urgent" && "bg-red-700/20 font-semibold")
-                      }
+                      className={twMerge(
+                        "p-3 border-2 border-gray-900 w-40 text-center",
+                        item?.cause === "urgent" &&
+                          "bg-red-700/20 font-semibold"
+                      )}
                     >
                       {item.cause}
                     </td>
@@ -76,7 +92,7 @@ export default function Home() {
       <div className="flex justify-center">
         <button
           className="border-green-600 border-2 p-2 px-4 rounded-xl bg-green-800/10 font-semibold"
-          onClick={getData}
+          onClick={testPost}
         >
           Get Data
         </button>
