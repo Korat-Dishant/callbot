@@ -6,9 +6,15 @@ export async function GET(request: Request) {
     const result = await pool.query(q2);
     console.log("res", result);
     console.log("rows", result.rows);
-    return Response.json({ data: result.rows }, { status: 200 });
+    const data = result.rows.map((item) => {
+      Object.keys(item).forEach((key) => {
+        item[key] = item[key].trim();
+      });
+      return item;
+    });
+    return Response.json({ data: data }, { status: 200 });
   } catch (error) {
     console.error("error ==== ", error);
-    return Response.json({ message:"error" }, { status: 500 });
+    return Response.json({ message: "error" }, { status: 500 });
   }
 }

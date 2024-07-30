@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { twMerge } from "tailwind-merge";
 
 // const getData = async () => {
 //   const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/contact`, {
@@ -29,20 +30,57 @@ export default function Home() {
   };
 
   return (
-    <div className="h-screen bg-green-200">
-      dashboard
-      {data && data.data.length > 0
-        ? data.data.map((item) => {
-            return (
-              <div className="w-full bg-blue-300 p-4">
-                {item.userid} - {item.cause}
-              </div>
-            );
-          })
-        : "no data"}
-      <button className="bg-red-400 h-20 w-64" onClick={getData}>
-        click
-      </button>
+    <div className="h-screen bg-white ">
+      <div className="py-12 overflow-x-scroll">
+        <table className="w-fit mx-auto">
+          <tbody>
+            <tr>
+              <th className="p-3 border-2 border-gray-900 w-80 min-w-96">
+                Customer Id
+              </th>
+              <th className="p-3 border-2 border-gray-900 w-40 text-center">
+                Attention
+              </th>
+            </tr>
+            {data && data.data.length > 0 ? (
+              data.data.map((item) => {
+                return (
+                  <tr>
+                    <td className="p-3 border-2 border-gray-900 w-80">
+                      {item.userid}
+                    </td>
+                    <td
+                      className={
+                        twMerge("p-3 border-2 border-gray-900 w-40 text-center",item?.cause === "urgent" && "bg-red-700/20 font-semibold")
+                      }
+                    >
+                      {item.cause}
+                    </td>
+                  </tr>
+                );
+              })
+            ) : (
+              <tr>
+                <td className="p-3 border-2 border-gray-900 w-80 min-w-96">
+                  ...
+                </td>
+                <td className={"p-3 border-2 border-gray-900 w-40 text-center"}>
+                  ...
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+
+      <div className="flex justify-center">
+        <button
+          className="border-green-600 border-2 p-2 px-4 rounded-xl bg-green-800/10 font-semibold"
+          onClick={getData}
+        >
+          Get Data
+        </button>
+      </div>
     </div>
   );
 }
