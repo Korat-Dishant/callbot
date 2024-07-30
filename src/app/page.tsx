@@ -20,7 +20,7 @@ export default function Home() {
     console.log("ndd", newData);
   }, []);
 
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<any>(null);
   const getData = async () => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/getData`, {
       method: "get",
@@ -42,10 +42,10 @@ export default function Home() {
                 Attention
               </th>
             </tr>
-            {data && data.data.length > 0 ? (
-              data.data.map((item) => {
+            {data && data?.data?.length > 0 ? (
+              data.data.map((item:any,index:number) => {
                 return (
-                  <tr>
+                  <tr key={index}>
                     <td className="p-3 border-2 border-gray-900 w-80">
                       {item.userid}
                     </td>

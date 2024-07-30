@@ -6,7 +6,7 @@ export async function GET(request: Request) {
     const result = await pool.query(q2);
     console.log("res", result);
     console.log("rows", result.rows);
-    const data = result.rows.map((item) => {
+    const data = result.rows.map((item:any) => {
       Object.keys(item).forEach((key) => {
         item[key] = item[key].trim();
       });
